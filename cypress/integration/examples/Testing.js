@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid';
 
 const name = uuid().slice(3, 10);
 const info = uuid().slice(3, 10);
+
 const Topping1 = 'onion';
 const Topping2 = 'chicken';
 const Topping3 = 'cheese';
@@ -39,9 +40,14 @@ it('can add text to the box submit user', () => {
   cy.get('[name="Instructions"]').type(info).should('have.value', info);
 });
 
+it('can select quantity', () => {
+    cy.get('input[name="quantity"]')
+    .type('number')
+    
+})
+
 //testing that I can submit the form
-it('can submit form!', () => {
-    cy.get('form')
-    .submit()
+it("submit the user", () => {
+    cy.get("form button").click();
+  })
   // Check to make sure all fields worked.
-});

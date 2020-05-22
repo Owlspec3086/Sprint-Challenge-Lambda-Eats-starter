@@ -42,15 +42,16 @@ const formGood = yup.object().shape({
     .string()
     .min(3, 'Name must have at least 3 characters')
     .required('name is required to start order'),
-
-  // Toppings
-  onions: yup.string(),
-  chicken: yup.string(),
-  cheese: yup.string(),
-  hawaiian: yup.string(),
-
-  //Instructions
-  Instructions: yup.string().required('50 characters or more if needed'),
+    
+    // Toppings
+    onions: yup.string(),
+    chicken: yup.string(),
+    cheese: yup.string(),
+    hawaiian: yup.string(),
+    
+    //Instructions
+    Instructions: yup.string().required('50 characters or more if needed'),
+    
 });
 
 const App = () => {
@@ -72,7 +73,7 @@ const App = () => {
     axios
       .post(url, formvalues)
       .then((res) => {
-        setOrders([res.data, ...orders]);
+        setOrders([...orders, res.data]);
         console.log(orders, 'Order UPPPPPPP!!!!');
       })
 
@@ -93,6 +94,7 @@ const App = () => {
         (topping) => formvalues.toppings[topping] === true
         //Post new order to API
       ),
+      
     };
     postOrders(newOrder);
     setformvalues(initialformvalues);
